@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+function show_help() {
+  cat <<EOF
+Usage: $(basename "$0") [IMAGE_PATH]
+
+Set the given image as the wallpaper.
+
+Arguments:
+  IMAGE_PATH    Absolute path to the image file. Can include '~' for \$HOME.
+
+Example:
+  $(basename "$0") ~/Pictures/wallpapers/sunset.jpg
+
+Notes:
+  - IMAGE_PATH must be an absolute path.
+  - '~' is allowed and will be expanded.
+  - Do NOT use relative paths like ./wall.jpg.
+
+Options:
+  -h, --help    Show this help message and exit.
+EOF
+}
+
+function apply() {
+  hyprctl hyprpaper preload "$1"
+  hyprctl hyprpaper wallpaper ",$1"
+}
+
+# Show help if no argument or --help
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$1" ]]; then
+  show_help
+  exit 0
+fi
+
+apply "$1"

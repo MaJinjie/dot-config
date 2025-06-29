@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# 函数：将百分比转换为 alpha 十六进制（四舍五入）
+percent_to_alpha() {
+    local percent="$1"
+
+    # 使用 bc 完整计算，添加 0.5 并用 scale 保留整数，防止精度丢失
+    local result=$(echo "scale=10; (255 * $percent / 100) + 0.5" | bc)
+
+    # 截断小数部分，得到整数
+    local int_alpha=$(echo "$result" | cut -d'.' -f1)
+
+    # 格式化为两位十六进制
+    printf "%02X" "$int_alpha"
+}
+
+# 无参数 → 输出 5% 梯度的 alpha 表
+if [[ $# -eq 0 ]]; then
+    for ((i=0; i<=100; i+=5)); do
+        hex=$(percent_to_alpha "$i")
+        printf "%3d%% = 0x%s\n" "$i" "$hex"
+    done
+    exit 0
+fi
+
+# 参数处理
+input="$1"
+input="${input%\%}"  # 去掉 %
+if ! [[ "$input" =~ ^[0-9]+$ ]] || (( input < 0 || input > 100 )); then
+    echo "错误：请输入 0–100 的整数（可选 %）。例如：30 或 30%"
+    exit 1
+fi
+
+hex=$(percent_to_alpha "$input")
+echo "0x$hex"
