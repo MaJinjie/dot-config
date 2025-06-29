@@ -1,0 +1,42 @@
+@import "colors.css";
+
+window {
+  background: alpha(@base, 0.7);
+  border: 2px solid  alpha(@blue, 0.8); 
+	border-radius: 1.2em;
+}
+
+#box {
+  /* Define attributes of the box surrounding icons here */
+  padding: 0.5em;
+}
+
+#active {
+	/* This is to underline the button representing the currently active window */
+	border-bottom: solid 1px;
+	border-color: @overlay0;
+}
+
+button, image {
+	background: none;
+	border-style: none;
+	box-shadow: none;
+	color: @text
+}
+
+button {
+	padding: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+	color: @text;
+  font-size: 12px;
+}
+
+button:hover {
+	background-color: @surface1;
+	border-radius: 2px;
+}
+
+button:focus {
+	box-shadow: none
+}

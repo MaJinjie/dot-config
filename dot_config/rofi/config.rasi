@@ -1,0 +1,282 @@
+/*****----- Configuration -----*****/
+configuration {
+    modi:                       "drun,run,filebrowser,window";
+    show-icons:                 true;
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+    drun-display-format:        "{name}";
+    window-format:              "{w}   {c}   {t}";
+    drun-show-actions:          true;
+    hover-select:               true;
+
+    kb-primary-paste: "Control+v";
+    kb-secondary-paste: "";
+    kb-secondary-copy: "Control+c";
+    kb-clear-line: "";
+    kb-move-front: "Control+a";
+    kb-move-end: "Control+e";
+    kb-move-word-back: "";
+    kb-move-word-forward: "";
+    kb-move-char-back: "";
+    kb-move-char-forward: "";
+    kb-remove-word-back: "Control+w";
+    kb-remove-word-forward: "";
+    kb-remove-char-forward: "Delete";
+    kb-remove-char-back: "BackSpace,Control+h";
+    kb-remove-to-eol: "";
+    kb-remove-to-sol: "Control+u";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-accept-custom: "Control+Return";
+    kb-accept-custom-alt: "Control+Shift+Return";
+    kb-accept-alt: "Shift+Return";
+
+    kb-delete-entry: "Shift+Delete,Control+x";
+    kb-mode-next: "Tab";
+    kb-mode-previous: "ISO_Left_Tab";
+    kb-mode-complete: "Control+l";
+
+    kb-row-left: "Control+Page_Up";
+    kb-row-right: "Control+Page_Down";
+    kb-row-up: "Up";
+    kb-row-down: "Down";
+    kb-row-tab: "";
+    kb-element-next: "Control+j";
+    kb-element-prev: "Control+k";
+    kb-page-prev: "Page_Up";
+    kb-page-next: "Page_Down";
+    kb-row-first: "Home,KP_Home";
+    kb-row-last: "End,KP_End";
+    kb-row-select: "Control+y";
+    kb-screenshot: "Alt+S";
+    kb-ellipsize: "Alt+period";
+    kb-toggle-case-sensitivity: "grave,dead_grave";
+    kb-toggle-sort: "Alt+grave";
+    kb-cancel: "Escape,Control+g,Control+bracketleft";
+    kb-custom-1: "Alt+1";
+    kb-custom-2: "Alt+2";
+    kb-custom-3: "Alt+3";
+    kb-custom-4: "Alt+4";
+    kb-custom-5: "Alt+5";
+    kb-custom-6: "Alt+6";
+    kb-custom-7: "Alt+7";
+    kb-custom-8: "Alt+8";
+    kb-custom-9: "Alt+9";
+    kb-custom-10: "Alt+0";
+    kb-custom-11: "Alt+exclam";
+    kb-custom-12: "Alt+at";
+    kb-custom-13: "Alt+numbersign";
+    kb-custom-14: "Alt+dollar";
+    kb-custom-15: "Alt+percent";
+    kb-custom-16: "Alt+dead_circumflex";
+    kb-custom-17: "Alt+ampersand";
+    kb-custom-18: "Alt+asterisk";
+    kb-custom-19: "Alt+parenleft";
+    kb-select-1: "Super+1";
+    kb-select-2: "Super+2";
+    kb-select-3: "Super+3";
+    kb-select-4: "Super+4";
+    kb-select-5: "Super+5";
+    kb-select-6: "Super+6";
+    kb-select-7: "Super+7";
+    kb-select-8: "Super+8";
+    kb-select-9: "Super+9";
+    kb-select-10: "Super+0";
+    kb-entry-history-up: "Control+n";
+    kb-entry-history-down: "Control+p";
+    kb-matcher-up: "Super+equal";
+    kb-mather-down: "Super+minus";
+    ml-row-left: "ScrollLeft";
+    ml-row-right: "ScrollRight";
+    ml-row-up: "ScrollUp";
+    ml-row-down: "ScrollDown";
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary,MouseDPrimary";
+    me-accept-custom: "Control+MouseDPrimary";
+
+    filebrowser {
+        directories-first:      true;
+        sorting-method:         "name";
+    }
+    timeout {
+        delay:    60;
+        action:   "kb-cancel";
+    }
+}
+
+/*****----- theme -----*****/
+@theme "catppuccin-mocha"
+
+
+/*****----- Main Window -----*****/
+window {
+    /* properties for window widget */
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    height:                      640px;
+    width:                       960px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    /* properties for all widgets */
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border-radius:               20px;
+    border-color:                @selected;
+    background-color:            black / 10%;
+    cursor:                      "default";
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     25px;
+    padding:                     50px;
+    border:                      1px;
+    border-radius:               inherit;
+    border-color:                @selected;
+    background-color:            @background;
+    children:                    [ "inputbar", "message","listview", "mode-switcher" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     0px;
+    margin:                      0px 200px;
+    padding:                     5px;
+    border:                      1px;
+    border-radius:               100%;
+    border-color:                @background-alt;
+    background-color:            white / 5%;
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    padding:                     8px 11px;
+    border-radius:               100%;
+    background-color:            transparent;
+    text-color:                  inherit;
+    str:                         "";
+}
+entry {
+    enabled:                     true;
+    padding:                     8px 12px;
+    border:                      0px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           @shadow;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     2;
+    lines:                       10;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    
+    spacing:                     10px;
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     5px;
+    border:                      0px;
+    border-radius:               100%;
+    border-color:                @selected;
+    background-color:            transparent;
+    text-color:                  @foreground-alt;
+    cursor:                      pointer;
+}
+element normal.active {
+    text-color:                  @active;
+}
+element selected.normal {
+    background-color:            white / 15%;
+    border:                      0px 0px 1px 0px;
+    border-radius:               0.5em;
+    border-color:                @selected;
+}
+element selected.active {
+    background-image:            linear-gradient(to right, #4C4F52, #2E343B);
+    text-color:                  @active;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        24px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher{
+    enabled:                     true;
+    expand:                      false;
+    spacing:                     0px;
+    margin:                      0px 200px;
+    padding:                     12px;
+    border-radius:               100%;
+    background-color:            @background-alt;
+}
+button {
+    background-color:            inherit;
+    text-color:                  @shadow;
+    cursor:                      pointer;
+}
+button selected {
+    background-color:            inherit;
+    text-color:                  @active;
+}
+
+/*****----- Message -----*****/
+error-message {
+    padding:                     20px;
+    border-color:                @selected;
+    background-color:            black / 10%;
+    text-color:                  @foreground;
+}
+message {
+    padding:                     0px;
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+textbox {
+    padding:                     0px;
+    border-radius:               0px;
+    background-color:            inherit;
+    text-color:                  @background;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+// set vim: set shiftwidth=4:

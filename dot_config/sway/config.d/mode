@@ -1,0 +1,194 @@
+# Mark container
+set $mode_mark "mark: [0-9a-z]"
+mode $mode_mark {
+    bindsym 0 mark 0; mode "default"
+    bindsym 1 mark 1; mode "default"
+    bindsym 2 mark 2; mode "default"
+    bindsym 3 mark 3; mode "default"
+    bindsym 4 mark 4; mode "default"
+    bindsym 5 mark 5; mode "default"
+    bindsym 6 mark 6; mode "default"
+    bindsym 7 mark 7; mode "default"
+    bindsym 8 mark 8; mode "default"
+    bindsym 9 mark 9; mode "default"
+
+    bindsym a mark "a"; mode "default"
+    bindsym b mark "b"; mode "default"
+    bindsym c mark "c"; mode "default"
+    bindsym d mark "d"; mode "default"
+    bindsym e mark "e"; mode "default"
+    bindsym f mark "f"; mode "default"
+    bindsym g mark "g"; mode "default"
+    bindsym h mark "h"; mode "default"
+    bindsym i mark "i"; mode "default"
+    bindsym j mark "j"; mode "default"
+    bindsym k mark "k"; mode "default"
+    bindsym l mark "l"; mode "default"
+    bindsym m mark "m"; mode "default"
+    bindsym n mark "n"; mode "default"
+    bindsym o mark "o"; mode "default"
+    bindsym p mark "p"; mode "default"
+    bindsym q mark "q"; mode "default"
+    bindsym r mark "r"; mode "default"
+    bindsym s mark "s"; mode "default"
+    bindsym t mark "t"; mode "default"
+    bindsym u mark "u"; mode "default"
+    bindsym v mark "v"; mode "default"
+    bindsym w mark "w"; mode "default"
+    bindsym x mark "x"; mode "default"
+    bindsym y mark "y"; mode "default"
+    bindsym z mark "z"; mode "default"
+
+    bindsym Shift+a mark "A"; mode "default"
+    bindsym Shift+b mark "B"; mode "default"
+    bindsym Shift+c mark "C"; mode "default"
+    bindsym Shift+d mark "D"; mode "default"
+    bindsym Shift+e mark "E"; mode "default"
+    bindsym Shift+f mark "F"; mode "default"
+    bindsym Shift+g mark "G"; mode "default"
+    bindsym Shift+h mark "H"; mode "default"
+    bindsym Shift+i mark "I"; mode "default"
+    bindsym Shift+j mark "J"; mode "default"
+    bindsym Shift+k mark "K"; mode "default"
+    bindsym Shift+l mark "L"; mode "default"
+    bindsym Shift+m mark "M"; mode "default"
+    bindsym Shift+n mark "N"; mode "default"
+    bindsym Shift+o mark "O"; mode "default"
+    bindsym Shift+p mark "P"; mode "default"
+    bindsym Shift+q mark "Q"; mode "default"
+    bindsym Shift+r mark "R"; mode "default"
+    bindsym Shift+s mark "S"; mode "default"
+    bindsym Shift+t mark "T"; mode "default"
+    bindsym Shift+u mark "U"; mode "default"
+    bindsym Shift+v mark "V"; mode "default"
+    bindsym Shift+w mark "W"; mode "default"
+    bindsym Shift+x mark "X"; mode "default"
+    bindsym Shift+y mark "Y"; mode "default"
+    bindsym Shift+z mark "Z"; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Jump to mark
+set $mode_jump "jump: [0-9a-z]"
+mode $mode_jump {
+    bindsym 0 [con_mark="0"] focus; mode "default"
+    bindsym 1 [con_mark="1"] focus; mode "default"
+    bindsym 2 [con_mark="2"] focus; mode "default"
+    bindsym 3 [con_mark="3"] focus; mode "default"
+    bindsym 4 [con_mark="4"] focus; mode "default"
+    bindsym 5 [con_mark="5"] focus; mode "default"
+    bindsym 6 [con_mark="6"] focus; mode "default"
+    bindsym 7 [con_mark="7"] focus; mode "default"
+    bindsym 8 [con_mark="8"] focus; mode "default"
+    bindsym 9 [con_mark="9"] focus; mode "default"
+
+    bindsym a [con_mark="a"] focus; mode "default"
+    bindsym b [con_mark="b"] focus; mode "default"
+    bindsym c [con_mark="c"] focus; mode "default"
+    bindsym d [con_mark="d"] focus; mode "default"
+    bindsym e [con_mark="e"] focus; mode "default"
+    bindsym f [con_mark="f"] focus; mode "default"
+    bindsym g [con_mark="g"] focus; mode "default"
+    bindsym h [con_mark="h"] focus; mode "default"
+    bindsym i [con_mark="i"] focus; mode "default"
+    bindsym j [con_mark="j"] focus; mode "default"
+    bindsym k [con_mark="k"] focus; mode "default"
+    bindsym l [con_mark="l"] focus; mode "default"
+    bindsym m [con_mark="m"] focus; mode "default"
+    bindsym n [con_mark="n"] focus; mode "default"
+    bindsym o [con_mark="o"] focus; mode "default"
+    bindsym p [con_mark="p"] focus; mode "default"
+    bindsym q [con_mark="q"] focus; mode "default"
+    bindsym r [con_mark="r"] focus; mode "default"
+    bindsym s [con_mark="s"] focus; mode "default"
+    bindsym t [con_mark="t"] focus; mode "default"
+    bindsym u [con_mark="u"] focus; mode "default"
+    bindsym v [con_mark="v"] focus; mode "default"
+    bindsym w [con_mark="w"] focus; mode "default"
+    bindsym x [con_mark="x"] focus; mode "default"
+    bindsym y [con_mark="y"] focus; mode "default"
+    bindsym z [con_mark="z"] focus; mode "default"
+
+    bindsym Shift+a [con_mark="A"] focus; mode "default"
+    bindsym Shift+b [con_mark="B"] focus; mode "default"
+    bindsym Shift+c [con_mark="C"] focus; mode "default"
+    bindsym Shift+d [con_mark="D"] focus; mode "default"
+    bindsym Shift+e [con_mark="E"] focus; mode "default"
+    bindsym Shift+f [con_mark="F"] focus; mode "default"
+    bindsym Shift+g [con_mark="G"] focus; mode "default"
+    bindsym Shift+h [con_mark="H"] focus; mode "default"
+    bindsym Shift+i [con_mark="I"] focus; mode "default"
+    bindsym Shift+j [con_mark="J"] focus; mode "default"
+    bindsym Shift+k [con_mark="K"] focus; mode "default"
+    bindsym Shift+l [con_mark="L"] focus; mode "default"
+    bindsym Shift+m [con_mark="M"] focus; mode "default"
+    bindsym Shift+n [con_mark="N"] focus; mode "default"
+    bindsym Shift+o [con_mark="O"] focus; mode "default"
+    bindsym Shift+p [con_mark="P"] focus; mode "default"
+    bindsym Shift+q [con_mark="Q"] focus; mode "default"
+    bindsym Shift+r [con_mark="R"] focus; mode "default"
+    bindsym Shift+s [con_mark="S"] focus; mode "default"
+    bindsym Shift+t [con_mark="T"] focus; mode "default"
+    bindsym Shift+u [con_mark="U"] focus; mode "default"
+    bindsym Shift+v [con_mark="V"] focus; mode "default"
+    bindsym Shift+w [con_mark="W"] focus; mode "default"
+    bindsym Shift+x [con_mark="X"] focus; mode "default"
+    bindsym Shift+y [con_mark="Y"] focus; mode "default"
+    bindsym Shift+z [con_mark="Z"] focus; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Resizing containers
+set $mode_resize "resize"
+mode $mode_resize {
+    bindsym h resize shrink width 10px
+    bindsym j resize grow height 10px
+    bindsym k resize shrink height 10px
+    bindsym l resize grow width 10px
+
+    bindsym Shift+h resize shrink width 10%
+    bindsym Shift+j resize grow height 10%
+    bindsym Shift+k resize shrink height 10%
+    bindsym Shift+l resize grow width 10%
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Select containers
+set $mode_select "select"
+mode $mode_select {
+    bindsym h focus left
+    bindsym j focus down
+    bindsym k focus up
+    bindsym l focus right
+    bindsym a focus parent
+    bindsym x focus child
+
+    # other
+    bindsym Shift+minus layout splitv
+    bindsym Shift+backslash layout splith
+    bindsym s layout stacking
+    bindsym t layout tabbed
+    bindsym backslash layout toggle all
+    bindsym backspace kill
+    bindsym q kill
+    bindsym equal fullscreen enable; focus tiling; mode "default"
+    bindsym period move container to scratchpad; mode "default"
+
+    bindsym r mode $mode_resize
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+m mode $mode_mark
+bindsym $mod+apostrophe mode $mode_jump
+bindsym $mod+r mode $mode_resize
+bindsym $mod+comma mode $mode_select
+
+# vim: set ft=swayconfig:

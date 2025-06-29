@@ -1,0 +1,126 @@
+[
+  {
+    "key": "k",
+    "command": ["script-binding", "file_browser/dynamic/scroll_up"],
+    "flags": { "repeatable": true }
+  },
+  {
+    "key": "j",
+    "command": ["script-binding", "file_browser/dynamic/scroll_down"],
+    "flags": { "repeatable": true }
+  },
+  {
+    "key": "l",
+    "command": ["script-binding", "file_browser/dynamic/down_dir"],
+    "filter": "dir"
+  },
+  {
+    "key": "h",
+    "command": ["script-binding", "file_browser/dynamic/up_dir"]
+  },
+  {
+    "key": "d",
+    "command": ["script-binding", "file_browser/dynamic/page_down"]
+  },
+  {
+    "key": "u",
+    "command": ["script-binding", "file_browser/dynamic/page_up"]
+  },
+
+  {
+    "key": "g-g",
+    "command": ["script-binding", "file_browser/dynamic/list_top"]
+  },
+  {
+    "key": "G",
+    "command": ["script-binding", "file_browser/dynamic/list_bottom"]
+  },
+  {
+    "key": "g-c",
+    "command": ["script-binding", "file_browser/dynamic/goto_current"]
+  },
+  {
+    "key": "g-r",
+    "command": ["script-binding", "file_browser/dynamic/goto_root"]
+  },
+
+  {
+    "key": "a",
+    "command": [
+      ["script-binding", "file_browser/dynamic/play_append"],
+      ["show-text", "%n"]
+    ],
+    "multiselect": true,
+    "multi-type": "concat",
+    "concat-string": "\n"
+  },
+  {
+    "key": "A",
+    "command": [
+      ["script-binding", "file_browser/dynamic/play_autoload"],
+      ["show-text", "%n"]
+    ],
+    "multiselect": true,
+    "multi-type": "concat",
+    "concat-string": "\n"
+  },
+
+  {
+    "key": "H",
+    "command": ["script-binding", "file_browser/dynamic/history_back"]
+  },
+  {
+    "key": "L",
+    "command": ["script-binding", "file_browser/dynamic/history_forward"]
+  },
+
+  {
+    "key": "/",
+    "command": ["script-binding", "file_browser/dynamic/find/find"]
+  },
+  {
+    "key": "?",
+    "command": ["script-binding", "file_browser/dynamic/find/find_advanced"]
+  },
+
+  {
+    "key": "r",
+    "command": ["script-binding", "file_browser/dynamic/reload"]
+  },
+  {
+    "key": "R",
+    "command": ["script-binding", "file_browser/dynamic/cache/clear"]
+  },
+
+  {
+    "key": "v",
+    "command": ["script-binding", "file_browser/dynamic/select_mode"]
+  },
+  {
+    "key": "tab",
+    "command": [
+      ["script-binding", "file_browser/dynamic/select_item"],
+      ["script-binding", "file_browser/dynamic/scroll_down"],
+    ],
+    "flags": { "repeatable": true }
+  },
+  {
+    "key": "shift+tab",
+    "command": [
+      ["script-binding", "file_browser/dynamic/select_item"],
+      ["script-binding", "file_browser/dynamic/scroll_up"],
+    ],
+    "flags": { "repeatable": true }
+  },
+
+  {
+    "key": "l",
+    "command": ["script-binding", "file_browser/dynamic/play"],
+    "filter": "file",
+  },
+  {
+    "key": "O",
+    "command": ["script-binding", "file_browser/dynamic/play"],
+    "multiselect": true
+  },
+]

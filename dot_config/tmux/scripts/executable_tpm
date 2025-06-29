@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+PLUGINS_DIR=${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins
+TMUX_CONFIG_FILE=${XDG_CONFIG_HOME:-${HOME}/.config}/tmux/tmux.conf
+
+function _error() {
+  echo -e "\e[31m$*\e[0m" >&2
+}
+
+function _info() {
+  echo -e "\e[34m$*\e[0m"
+}
+
+function install() {
+  local plugin_install="$plugin_path/._install"
+  if ! [[ -d "$plugin_path" && -f "$plugin_install" ]]; then
+    rm -rf "$plugin_path"
+    _info "Installing $plugin_repo"
+    if git clone --depth 1 "$plugin_url" "$plugin_path"; then
+      touch "$plugin_install"
+      _info "Installation successful."
+    else
+      _error "Installation has failed."
+      return 1
+    fi
+  else
+    return 2
+  fi
+}
+
+function load() {
+  install
+  if [[ $? -ne 1 ]]; then
+    local script="$plugin_path/$plugin_name.tmux"
+
+    [[ -f "$script" && -x "$script" ]] || script=$(command ls -1 "$plugin_path"/*.tmux | head -1)
+    if [[ "$script" && -x "$script" ]]; then
+      "$script" || _error "Run $script has failed!"
+    else
+      _error "Not Find executable tmux script in $plugin_repo!"
+    fi
+  fi
+}
+
+function update() {
+  install
+  if [[ $? -eq 2 ]]; then
+    _info "Updating $plugin_repo"
+    if cd "$plugin_path" && git pull; then
+      _info "Update successful."
+    else
+      _error "Update has failed."
+    fi
+  fi
+}
+
+function clean() {
+  if [[ -d "$plugin_path" ]]; then
+    _info "Cleaning $plugin_repo ..."
+    if rm -rf "$plugin_path"; then
+      _info "Clean successful."
+    else
+      _error "Clean has failed."
+    fi
+  fi
+}
+
+function help() {
+  cat <<-EOF
+    Usage: $0 [OPTION] PLUGIN_REPO...
+
+    Options:
+    -i, --install    Install plugins
+    -u, --update     Update installed plugins
+    -d, --delete     Remove plugins
+    -l, --load       Install and load plugins (default)
+    -h, --help       Show this help
+
+    Examples:
+    $0 -i tmux-plugins/tmux-sensible
+    $0 --load tmux-plugins/tmux-resurrect
+EOF
+}
+
+function main {
+  local func_name
+  case "$1" in
+  -i | --install) func_name="install" ;;
+  -u | --update) func_name="update" ;;
+  -d | --delete) func_name="clean" ;;
+  -l | --load) func_name="load" ;;
+  -h | --help)
+    help
+    exit 0
+    ;;
+  -*)
+    _error "Error Option $1."
+    exit 1
+    ;;
+  *)
+    _error "Please select action."
+    exit 1
+    ;;
+  esac
+
+  if [[ ! -d $PLUGINS_DIR ]] && ! mkdir -p "$PLUGINS_DIR"; then
+    _error "Create directory $PLUGINS_DIR has failed."
+    exit 1
+  fi
+
+  if [[ $# -eq 1 ]]; then
+    mapfile -t PLUGINS_LIST < <(awk '/^[[:blank:]]*set(-option)?[[:blank:]]+-g[[:blank:]]+@plugin/ { gsub(/'\''/,""); gsub(/'\"'/,""); print $4 }' "$TMUX_CONFIG_FILE")
+    set -- - "${PLUGINS_LIST[@]}"
+    echo "$@"
+  fi
+
+  # for plugin_repo in "${@:2}"; do
+  #   local plugin_url="https://github.com/$plugin_repo.git"
+  #   local plugin_name="${plugin_repo#*/}"
+  #   local plugin_path="$PLUGINS_DIR/$plugin_name"
+  #
+  #   $func_name
+  # done
+}
+
+main "$@"
+# if [[ $# -eq 0 ]]; then
+#   main -i
+# else
+#   main "$@"
+# fi

@@ -1,0 +1,185 @@
+@import "colors.css";
+
+window#waybar.top {
+    background-color: transparent;
+}
+
+#custom-system,
+#workspaces,
+#tray,
+
+#keyboard-state,
+#submap,
+
+#cpu,
+#memory,
+#pulseaudio.microphone,
+#pulseaudio,
+#backlight,
+#network,
+#bluetooth,
+#battery,
+#clock,
+#custom-wallpapers,
+#custom-notification,
+#custom-power,
+
+#window,
+#idle_inhibitor
+{
+    color: @text;
+    background-color: alpha(@base, 0.8);
+    border-radius: 0.5em;
+    margin: 0;
+    padding: 0.25em 0.5em;
+}
+
+/* --------------------------------- left -------------------------------*/
+#custom-system {
+    padding-left: 0.6em;
+    padding-right: 1.0em;
+    color: @blue;
+}
+
+
+#workspaces {
+    margin-left: 1em;
+}
+#workspaces button {
+    padding: 0 0.5em;
+    margin: 0 0.25em;
+}
+#workspaces button.empty {
+    color: @overlay0;
+}
+#workspaces button.active {
+    color: @mauve;
+}
+#workspaces button.urgent {
+    color: @red;
+}
+
+
+#tray {
+    margin-left: 1em;
+}
+
+/* --------------------------------- center -------------------------------*/
+#submap {
+    color: @mauve;
+    margin: 0 0.5em;
+}
+
+#keyboard-state {
+    color: @blue;
+    margin: 0 0.5em;
+}
+
+/* --------------------------------- right -------------------------------*/
+#idle_inhibitor {
+    padding-left: 0.6em;
+    padding-right: 1em;
+    margin-right: 1em;
+}
+#idle_inhibitor.activated {
+    color: @yellow;
+}
+#idle_inhibitor.deactivated {
+    color: @green;
+}
+
+
+#cpu {
+    color: @lavender;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0.25em;
+}
+
+#memory {
+    color: @sky;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+
+#pulseaudio.microphone {
+    color: @rosewater;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+#pulseaudio {
+    color: @flamingo;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+
+#backlight {
+    color: @yellow;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+
+#network {
+    color: @lavender;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+#network.disabled {
+    color: @red;
+}
+
+#bluetooth {
+    color: @sapphire;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+#bluetooth.disabled,
+#bluetooth.no-controller {
+    color: @red;
+}
+
+#battery {
+    color: @green;
+    border-radius: 0;
+    margin-right: 0.25em;
+}
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#clock {
+    color: @blue;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-right: 1em;
+}
+
+#custom-wallpapers {
+    color: @mauve;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-left: 0.7em;
+}
+
+#custom-notification {
+    border-radius: 0;
+}
+
+#custom-power {
+    color: @pink;
+    padding-right: 0.9em;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* ------------------------ others ----------------------------- */
+
+/* vim: set shiftwidth=4 :*/

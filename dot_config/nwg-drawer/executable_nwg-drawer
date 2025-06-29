@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+OPTIONS=(
+  -c 6 
+  -fm thunar
+  -g "${GTK_THEME}"
+  -i "${GTK_ICON_THEME}"
+  -mb 54 -mt 54
+  -ml 288 -mr 288 
+
+  # -pbexit "hyprctl dispatch exit"
+  # -pblock
+  # -pbpoweroff "systemctl poweroff"
+  # -pbreboot "systemctl reboot"
+  # -pbsleep "systemctl suspend"
+ 
+  -term foot
+  -wm hyprland
+)
+
+nwg-drawer "${OPTIONS[@]}" "$@"

@@ -1,0 +1,102 @@
+# Rime user dictionary
+#@/db_name	luna_pinyin
+#@/db_type	userdb
+#@/rime_version	1.13.1
+#@/tick	133
+#@/user_id	ice
+an 	按	c=0 d=0.0941765 t=133
+bang ding 	綁定	c=1 d=0.960789 t=133
+bao 	包	c=1 d=0.970446 t=133
+bu 	不	c=0 d=0.0941765 t=133
+bu fen 	部分	c=1 d=0.965605 t=133
+bu neng gou 	不能夠	c=0 d=0.0895834 t=133
+bu sheng xiao 	不生效	c=1 d=0.946485 t=133
+chong qi 	重啓	c=1 d=0.900325 t=133
+chong xin 	重新	c=1 d=0.965605 t=133
+chu ci 	除此	c=1 d=0.860708 t=133
+cun fang zai 	存放在	c=1 d=0.873716 t=133
+dan shi 	但是	c=2 d=1.89583 t=133
+de 	的	c=11 d=8.78351 t=133
+er 	而	c=1 d=0.918512 t=133
+fa 	發	c=1 d=0.831104 t=133
+fan de sa 	范德薩	c=1 d=0.826959 t=133
+fan dui 	反對	c=0 d=0.0782704 t=133
+fan dui shi fou 	反對是否	c=1 d=0.868497 t=133
+fan dui shi fou shi fou 	反對是否是否	c=1 d=0.822835 t=133
+fan fan fu fu 	反反覆覆	c=1 d=0.826959 t=133
+fang 	放	c=1 d=0.995012 t=133
+fang fa 	方法	c=2 d=1.83527 t=133
+ge 	個	c=1 d=0.856415 t=133
+gen ben 	根本	c=1 d=0.913931 t=133
+gu ji 	估計	c=1 d=0.980199 t=133
+guan yu 	關於	c=1 d=0.970446 t=133
+hai shi 	還是	c=1 d=0.941765 t=133
+hai you 	還有	c=1 d=0.869358 t=133
+hao xiang 	好像	c=1 d=0.941765 t=133
+hou 	後	c=0 d=0.083527 t=133
+hou xuan ci 	後選詞	c=1 d=0.839457 t=133
+jia zai 	加載	c=1 d=0.970446 t=133
+jie shao 	介紹	c=1 d=0.99005 t=133
+jiu 	就	c=1 d=0.918512 t=133
+kuai jie jian 	快捷鍵	c=1 d=0.985112 t=133
+lai 	來	c=1 d=0.904837 t=133
+le 	了	c=1 d=0.995012 t=133
+ma 	嗎	c=2 d=1.8781 t=133
+mei ci 	每次	c=1 d=0.882497 t=133
+mei you 	沒有	c=3 d=2.55902 t=133
+mo ren 	默認	c=1 d=0.852144 t=133
+mu lu 	目錄	c=1 d=0.99005 t=133
+na 	那	c=0 d=0.0904837 t=133
+na li 	哪裏	c=1 d=0.878095 t=133
+nan dao 	難道	c=1 d=0.895834 t=133
+nei rong 	內容	c=1 d=1 t=133
+neng gou 	能夠	c=1 d=0.980199 t=133
+ni 	你	c=1 d=0.932394 t=133
+ni hao 	你好	c=5 d=4.04095 t=133
+ni hao hao 	你好好	c=1 d=0.810585 t=133
+pei zhi 	配置	c=2 d=1.77922 t=133
+pin yin 	拼音	c=1 d=0.937067 t=133
+que ding 	確定	c=1 d=0.985112 t=133
+ren wei 	認爲	c=1 d=0.904837 t=133
+ru he 	如何	c=1 d=0.826959 t=133
+shang shu 	上述	c=1 d=0.937067 t=133
+shen me 	什麼	c=1 d=0.99005 t=133
+sheng xiao 	生效	c=3 d=2.724 t=133
+shi 	是	c=1 d=0.790571 t=133
+shi fou 	是否	c=1 d=0.954672 t=133
+shi xi 	實習	c=0 d=0.0904837 t=133
+shi xi na 	實習那	c=1 d=0.909373 t=133
+shi xian 	實現	c=1 d=0.913931 t=133
+shi yong 	使用	c=7 d=5.79792 t=133
+shu chu 	輸出	c=1 d=0.980199 t=133
+ta 	它	c=3 d=2.50561 t=133
+tong guo 	通過	c=1 d=0.895834 t=133
+wen jian 	文件	c=2 d=1.7744 t=133
+wen ti 	問題	c=2 d=1.83029 t=133
+wo 	我	c=7 d=5.5477 t=133
+wo bu neng gou 	我不能夠	c=1 d=0.900325 t=133
+wu song 	霧凇	c=1 d=0.932394 t=133
+xiang 	像	c=1 d=0.927743 t=133
+xuan ci 	選詞	c=0 d=0.083527 t=133
+ye 	也	c=1 d=0.99005 t=133
+yi 	一	c=1 d=0.960789 t=133
+yi 	以	c=1 d=0.965605 t=133
+yi ge 	一個	c=1 d=0.873716 t=133
+yi ran 	依然	c=1 d=0.843665 t=133
+ying gai 	應該	c=1 d=0.869358 t=133
+you 	有	c=2 d=1.8676 t=133
+zai 	在	c=4 d=3.09897 t=133
+zhe ge 	這個	c=1 d=0.965605 t=133
+zhe shi 	這是	c=3 d=2.72417 t=133
+zhe yang 	這樣	c=1 d=0.932394 t=133
+zhe zhong fang shi 	這種方式	c=1 d=0.970446 t=133
+zhi jie 	直接	c=1 d=0.913931 t=133
+zhi neng 	只能	c=1 d=0.891366 t=133
+zhi wai 	之外	c=1 d=0.865022 t=133
+zhi you 	只有	c=1 d=0.847894 t=133
+zhong 	中	c=2 d=1.68579 t=133
+zi dai 	自帶	c=1 d=0.955997 t=133
+zi ding yi 	自定義	c=2 d=1.69581 t=133
+zu jian 	組建	c=1 d=0.951229 t=133
+zui jin 	最近	c=0 d=0.0941765 t=133
+zui jin an 	最近按	c=1 d=0.946485 t=133

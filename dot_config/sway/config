@@ -1,0 +1,263 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#{{{
+  # Logo key. Use Mod1 for Alt.
+  set $mod Mod4
+  set $modd Shift
+  # Home row direction keys, like vim
+  set $left h
+  set $down j
+  set $up k
+  set $right l
+  # Your preferred terminal emulator
+  set $term foot
+  # Your preferred application launcher
+  set $menu fuzzel
+#}}}
+### Options
+#{{{
+  # Set default border style for new tiled windows. Config reload won't affect existing windows, only newly created ones after the reload.
+  default_border pixel 4
+  # Set default border style for new floating windows. This only applies to windows that are spawned in floating mode, not windows that become floating afterwards.
+  default_floating_border pixel 4
+
+  # Specifies the minimum size of floating windows.
+  floating_minimum_size 100 x 75
+
+  # Drag floating windows by holding down $mod and left mouse button.
+  # Resize them with right mouse button + $mod.
+  # Despite the name, also works for non-floating windows.
+  # Change normal to inverse to use left mouse button for resizing and right
+  # mouse button for dragging.
+  floating_modifier $mod normal
+
+  focus_follows_mouse no
+
+  gaps inner 4
+  gaps outer 2
+
+  smart_gaps on
+  smart_borders on
+#}}}
+### Idle configuration
+#{{{
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+exec systemctl --user import-environment
+exec fnott
+exec fcitx5 -d
+#}}}
+
+
+### For window
+#{{{
+for_window [app_id="firefox"] opacity set 0.9
+#}}}
+
+### Output configuration
+#{{{
+# Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
+# output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/.local/images/desktop-wallpaper.jpg fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+#}}}
+### Input configuration
+#{{{
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+# input type:keyboard {
+  # xkb_layout us
+  # xkb_file ~/.config/sway/custom.xkb
+  # xkb_options caps:escape,ctrl:swapcaps,shift:both_capslock
+  # xkb_file ~/.xkb/keymap/custom.xkb
+  # xkb_options custom(ralt_rctrl_to_super)
+# }
+#}}}
+### Key bindings
+#{{{
+# ' apostrophe
+#
+# " quotedbl
+# 
+# ; semicolon
+# 
+# [ bracketleft
+# 
+# ] bracketright
+# 
+# \ backslash
+# 
+# / slash
+# 
+# - minus
+# 
+# = equal
+#
+# Basics:
+#
+  # Start a terminal
+  bindsym $mod+Return exec $term
+  bindsym $mod+$modd+minus splith; exec $term
+  bindsym $mod+$modd+backslash splitv; exec $term
+
+  # Kill focused window
+  bindsym $mod+q kill
+  bindsym $mod+backspace kill
+  # Exit sway (logs you out of your Wayland session)
+  bindsym $mod+$modd+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+  # Start your launcher
+  bindsym $mod+d exec $menu
+#
+# Focus:
+#
+  # Window/Copntainer
+    # Moves focus to the next container in the specified direction.
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # Move focus to the parent/last-focused-child container.
+    bindsym $mod+a focus parent
+    bindsym $mod+x focus child
+    bindsym $mod+c focus tiling
+
+  # Workspace
+    # Switches to the prev/next workspace.
+    # Switches to the next workspace on the current output or on the next output if currently on the last workspace.
+    bindsym $mod+bracketleft workspace prev
+    bindsym $mod+bracketright workspace next
+
+
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+
+    # Switches to the previously focused workspace.
+    bindsym $mod+backslash workspace back_and_forth
+#
+# Move:
+#
+  # Move the focused window with the same, but add $modd
+  bindsym $mod+$modd+$left move left
+  bindsym $mod+$modd+$down move down
+  bindsym $mod+$modd+$up move up
+  bindsym $mod+$modd+$right move right
+
+  # Moves the focused container to the previous/next workspace on this output, or if no workspaces remain, the previous or next output.
+  bindsym $mod+$modd+bracketleft move container to workspace prev
+  bindsym $mod+$modd+bracketright move container to workspace next
+
+  # Move focused container to workspace
+  bindsym $mod+$modd+1 move container to workspace number 1
+  bindsym $mod+$modd+2 move container to workspace number 2
+  bindsym $mod+$modd+3 move container to workspace number 3
+  bindsym $mod+$modd+4 move container to workspace number 4
+  bindsym $mod+$modd+5 move container to workspace number 5
+  bindsym $mod+$modd+6 move container to workspace number 6
+  bindsym $mod+$modd+7 move container to workspace number 7
+  bindsym $mod+$modd+8 move container to workspace number 8
+  bindsym $mod+$modd+9 move container to workspace number 9
+  # Note: workspaces can have any name you want, not just numbers.
+  # We just use 1-10 as the default.
+
+  # Move the currently focused window to the scratchpad
+  bindsym $mod+$modd+period move container to scratchpad
+#
+# Toggle:
+#
+  # Make the current focus fullscreen
+  bindsym $mod+equal fullscreen toggle
+  bindsym $mod+$modd+equal fullscreen toggle global
+
+  # Toggle between the tiling area and the floating area
+  bindsym $mod+f focus mode_toggle
+  # Toggle the current focus between tiling and floating mode
+  bindsym $mod+v floating toggle
+
+  # Cycles through splith and splitv.
+  # bindsym $mod+s layout toggle split
+  # Cycles through stacking, tabbed and the last split layout.
+  # bindsym $mod+$modd+s layout toggle split tabbed stacking
+#
+# Layout:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+s splitt
+#
+# Scratchpad:
+#
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+period scratchpad show
+#
+# Utilities:
+#
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special key to take a screenshot with grim
+    bindsym Print exec grim
+#}}}
+# Status Bar:
+#{{{
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+#}}}
+
+include ~/.config/sway/config.d/*
+include /etc/sway/config.d/*

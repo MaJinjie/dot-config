@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+WALLPAPERS_DIR=~/.local/images/wallpapers
+
+swayimg \
+  --config "keys.gallery.Return=exec wallpaper '%'; exit" \
+  --gallery "$WALLPAPERS_DIR"

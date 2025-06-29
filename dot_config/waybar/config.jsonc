@@ -1,0 +1,40 @@
+[
+  {
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "mode": "dock",
+    "exclusive": true,
+    "margin-top": 4, // aligin to hyprland
+    "margin-left": 4, // aligin to hyprland
+    "margin-right": 4, // aligin to hyprland
+    // "height": 10,
+    "modules-left": [
+      "custom/system",
+
+      "hyprland/workspaces",
+
+      "tray"
+    ],
+    "modules-center": [
+      "hyprland/submap"
+    ],
+    "modules-right": [
+      "idle_inhibitor",
+
+      "cpu",
+      "memory",
+      "pulseaudio#microphone",
+      "pulseaudio",
+      "backlight",
+      "network",
+      "bluetooth",
+      "battery",
+      "clock",
+
+      "custom/wallpapers",
+      "custom/notification",
+      "custom/power"
+    ],
+    "include": [ "~/.config/waybar/modules.jsonc" ]
+  }
+]

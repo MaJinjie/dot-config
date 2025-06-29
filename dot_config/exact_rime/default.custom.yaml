@@ -1,0 +1,54 @@
+patch:
+  __include: rime_ice_suggestion:/
+
+  schema_list:
+    - schema: rime_ice
+
+  menu/page_size: 3
+
+  key_binder:
+    select_first_character: "braceleft"  # {
+    select_last_character: "braceright"  # }
+
+    bindings:
+      # 翻页
+      - { when: has_menu, accept: minus, send: Page_Up }  # 上一页设置为 paging 时会导致直接上屏并输出减号
+      - { when: has_menu, accept: equal, send: Page_Down }
+      - { when: paging, accept: comma, send: Page_Up }
+      - { when: has_menu, accept: semicolon, send: Page_Down }
+
+      # 切换光标至下/上一个拼音
+      - { when: composing, accept: bracketleft, send: Shift+Left }  # [
+      - { when: composing, accept: bracketright, send: Shift+Right }  # ]
+
+      # 切换中英标点
+      - { when: always, toggle: ascii_punct, accept: Control+Shift2 }
+
+      # Emacs/Vi
+      - { when: composing, accept: Control+k, send: Up }
+      - { when: composing, accept: Control+j, send: Down }
+      - { when: composing, accept: Control+p, send: Up }
+      - { when: composing, accept: Control+n, send: Down }
+      - { when: composing, accept: Control+b, send: Left }
+      - { when: composing, accept: Control+f, send: Right }
+      - { when: composing, accept: Control+a, send: Home }
+      - { when: composing, accept: Control+e, send: End }
+      - { when: composing, accept: Control+d, send: Delete }
+      - { when: composing, accept: Control+h, send: BackSpace }
+      - { when: composing, accept: Control+bracketleft, send: Escape }
+      - { when: composing, accept: Control+u, send: Escape }
+      - { when: composing, accept: Control+w, send: Escape }
+      - { when: composing, accept: Control+c, send: Escape }
+
+      - { when: composing, accept: period, send: Down }
+
+      - {accept: KP_0, send: 0, when: composing}
+      - {accept: KP_1, send: 1, when: composing}
+      - {accept: KP_2, send: 2, when: composing}
+      - {accept: KP_3, send: 3, when: composing}
+      - {accept: KP_4, send: 4, when: composing}
+      - {accept: KP_5, send: 5, when: composing}
+      - {accept: KP_6, send: 6, when: composing}
+      - {accept: KP_7, send: 7, when: composing}
+      - {accept: KP_8, send: 8, when: composing}
+      - {accept: KP_9, send: 9, when: composing}

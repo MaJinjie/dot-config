@@ -1,0 +1,50 @@
+##################################################################
+# @author majinjie
+# @created 2025-6-22
+# @changed 2025-6-22
+# @version zsh 5.9
+#
+# See: https://zsh.sourceforge.io/Doc/Release/zsh_toc.html
+##################################################################
+. "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+
+export VISUAL="nvim"
+export EDITOR="nvim"
+export TERMINAL="footclient"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+#######################################################################
+#                                                                     #
+#                             programs                                #
+#                                                                     #
+#######################################################################
+
+export FZF_TMUX_OPTS='-p 70%,80%'
+export FZF_DEFAULT_COMMAND='fd -tf --color=always'
+export FZF_DEFAULT_OPTS='
+--prompt="> "
+--pointer=">"
+--marker="▍"
+--scrollbar="█"
+--info=inline
+--layout=reverse
+--color="hl:yellow:bold,hl+:yellow:reverse,pointer:032,marker:010,bg+:-1,border:#808080"
+--cycle
+--ansi
+--tabstop=4
+--scroll-off=4
+--history=/tmp/fzf-history
+--preview="
+    r={}; r=${~r}; \
+    ([[ -f $r ]] && bat --color=always --number $r) || 
+    ([[ -d $r ]] && ls $r | less) || 
+    (echo $r 2> /dev/null | head -200)
+"
+--bind="ctrl-b:preview-page-up,ctrl-f:preview-page-down"
+--bind="ctrl-d:half-page-down"
+--bind="esc:print-query"
+--bind="enter:accept-or-print-query"
+
+--bind="backward-eof:abort"
+'

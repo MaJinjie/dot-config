@@ -1,0 +1,69 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "aeca767"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
+
+[[plugin.deps]]
+use = "wekauwau/yatline-tokyo-night"
+rev = "19dbd25"
+hash = "5f00a80a79b9f7fd8e24d6fa5dbb3ae"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "aeca767"
+hash = "d5d4f3527592da5fbe77fd6f51815f80"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "1ee69a5"
+hash = "63679f3daf8551ff8755be38b5ced0f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "aeca767"
+hash = "277ba273e5d3d647feb5808d0fe4e4e0"
+
+[[plugin.deps]]
+use = "boydaihungst/restore"
+rev = "b7c3376"
+hash = "d9dbd61d8b814e74a5420dba1e4788c4"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "fbb7c00"
+hash = "1d231a808d3344546380df33daf43e91"
+
+[[plugin.deps]]
+use = "MaJinjie/yazi-plugins:better-visual"
+rev = "b7b77b0"
+hash = "891e0d5b3d643d94ad170792ac09fc1"
+
+[[plugin.deps]]
+use = "MaJinjie/yazi-plugins:better-filter"
+rev = "b7b77b0"
+hash = "5896af7c4cbea9d10c376212a799b902"
+
+[[plugin.deps]]
+use = "MaJinjie/yazi-plugins:better-enter"
+rev = "b7b77b0"
+hash = "e7a273e922fefee806f4e1108f0fbc8d"
+
+[[plugin.deps]]
+use = "MaJinjie/yazi-plugins:find-files"
+rev = "b7b77b0"
+hash = "fb47c1ad0c69175f2d71194d07a4f052"
+
+[[plugin.deps]]
+use = "MaJinjie/yazi-plugins:grep-files"
+rev = "b7b77b0"
+hash = "9daa8ad6be49d261c87c85bbee5158f4"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "b3950bf"
+hash = "319ce574cdb2865baf4323db90456504"

@@ -1,0 +1,70 @@
+---@class user.config: UserConfig
+local M = {}
+
+---@class UserConfig
+local default = {
+	icons = {
+		diagnostics = {
+			hint = " ",
+			info = " ",
+			warn = " ",
+			error = " ",
+		},
+		git = {
+			added = "✚",
+			modified = "●",
+			deleted = "✖",
+			renamed = "󰁕",
+			commit = "󰜘",
+			ignored = "",
+			unstaged = "󰄱",
+			staged = "",
+			unmerged = "",
+			untracked = "?",
+		},
+		kinds = {
+			Array = " ",
+			Boolean = "󰨙 ",
+			Class = " ",
+			Color = " ",
+			Control = " ",
+			Collapsed = " ",
+			Constant = "󰏿 ",
+			Constructor = " ",
+			Copilot = " ",
+			Enum = " ",
+			EnumMember = " ",
+			Event = " ",
+			Field = " ",
+			File = " ",
+			Folder = " ",
+			Function = "󰊕 ",
+			Interface = " ",
+			Key = " ",
+			Keyword = " ",
+			Method = "󰊕 ",
+			Module = " ",
+			Namespace = "󰦮 ",
+			Null = " ",
+			Number = "󰎠 ",
+			Object = " ",
+			Operator = " ",
+			Package = " ",
+			Property = " ",
+			Reference = " ",
+			Snippet = "󱄽 ",
+			String = " ",
+			Struct = "󰆼 ",
+			Text = " ",
+			TypeParameter = " ",
+			Unit = " ",
+			Unknown = " ",
+			Value = " ",
+			Variable = "󰀫 ",
+		},
+	},
+	kind_filter = nil,
+}
+
+setmetatable(M, { __index = default })
+return M

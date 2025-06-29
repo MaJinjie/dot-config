@@ -1,0 +1,4 @@
+set $script_dir ~/.config/sway/scripts
+bindsym $mod+n exec $script_dir/next-empty-workspace.sh
+
+# vim: set ft=swayconfig:

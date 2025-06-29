@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OPTIONS=(
+  -a center
+  -c "bash -c ~/.config/nwg-drawer/nwg-drawer"
+  -hd 200
+  -i 48
+  # -iw "special"
+  -lp start
+  -p bottom
+  -mb 4 -mt 4 -ml 4 -mr 4
+)
+
+nwg-dock-hyprland "${OPTIONS[@]}" "$@"

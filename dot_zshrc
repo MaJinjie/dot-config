@@ -1,0 +1,202 @@
+##################################################################
+# @author majinjie
+# @created 2025-6-22
+# @changed 2025-6-23
+# @version zsh 5.9
+#
+# See: https://zsh.sourceforge.io/Doc/Release/zsh_toc.html
+##################################################################
+
+# 两种情况： 
+#   1. 终端模拟器 + tmux
+#   2. exec tmux
+source "$HOME/.config/zsh/integration/$TERM_PROGRAM"
+
+
+# Enable Powerlevel10k instant prompt. 
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  builtin source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+#######################################################################
+#                                                                     #
+#                             options                                 #
+#                                                                     #
+#######################################################################
+
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_FCNTL_LOCK
+setopt SHARE_HISTORY
+
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+
+unsetopt FLOWCONTROL # 禁用终端流控制，以允许重新绑定^S（暂停终端输出）^Q（恢复终端输出）
+
+#######################################################################
+#                                                                     #
+#                             keymaps                                 #
+#                                                                     #
+#######################################################################
+
+bindkey -v
+
+autoload -U edit-command-line
+zle -N edit-command-line
+
+bindkey -M main '^O' edit-command-line
+bindkey -M main '^T' push-line-or-edit
+
+#######################################################################
+#                                                                     #
+#                             aliases                                 #
+#                                                                     #
+#######################################################################
+
+alias ls='eza --color=always --icons --classify=always'
+alias la='ls --all'
+alias lt='ls --tree'
+alias ll='ls --long --header --group --links --mounts --binary --time-style long-iso'
+
+alias v=nvim
+alias t=tmux
+alias g=git
+alias f=fastfetch
+alias .=chezmoi
+
+#######################################################################
+#                                                                     #
+#                             functions                               #
+#                                                                     #
+#######################################################################
+
+function yazi() {
+    command yazi "$@"
+}
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
+#######################################################################
+#                                                                     #
+#                             plugins                                 #
+#                                                                     #
+#######################################################################
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [[ ! -d ${ZINIT_HOME} ]] && mkdir -p "$(dirname ${ZINIT_HOME})" || [[ ! -d ${ZINIT_HOME}/.git ]]; then
+  echo -e "\e[34m▓▒░Installing ZDHARMA-CONTINUUM Initiative Plugin Manager.\e[0m"
+  if git clone https://github.com/zdharma-continuum/zinit "${ZINIT_HOME}"; then
+    echo -e "\e[32m▓▒░Installation successful.\e[0m"
+  else
+    echo -e "\e[31m▓▒░The clone has failed.\e[0m"
+    false
+  fi
+fi && {
+  source "${ZINIT_HOME}/zinit.zsh"
+
+  # Be needed for NICHOLAS85/z-a-eval completions
+  autoload -Uz _zinit
+  (( ${+_comps} )) && _comps[zinit]=_zinit
+
+  # Ices
+  zinit light-mode depth'1' atinit'Z_A_USECOMP=1' for NICHOLAS85/z-a-eval
+
+  zinit light-mode depth'1' src"$XDG_CONFIG_HOME/zsh/p10k.zsh" for romkatv/powerlevel10k
+
+  zinit light-mode depth'1' for \
+    jeffreytse/zsh-vi-mode \
+    has'vivid' \
+    atinit'vivid_theme="tokyonight-night"' \
+    atclone'./build.sh' atpull'%atclone' \
+    atload'zstyle ":completion:*"  list-colors "${(s.:.)LS_COLORS}"' \
+    ryanccn/vivid-zsh
+
+
+  zinit wait'0a' lucid light-mode depth'1' for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+    blockf \
+      zsh-users/zsh-completions \
+    atinit"
+      ZSH_AUTOSUGGEST_STRATEGY=(completion)
+      ZSH_AUTOSUGGEST_EXECUTE_WIDGETS=()
+      ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-end-of-line)
+      ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+        forward-char
+        vi-forward-char
+        forward-word
+        vi-forward-word
+        emacs-forward-word
+        vi-forward-word-end
+        vi-forward-blank-word
+        vi-forward-blank-word-end
+        vi-find-next-char
+        vi-find-next-char-skip
+      )
+      " \
+    atload"!_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+    atload"
+      zstyle ':fzf-tab:*' fzf-command fzf
+      zstyle ':fzf-tab:*' use-fzf-default-opts 'yes'
+      zstyle ':fzf-tab:*' fzf-min-height 10
+      zstyle ':fzf-tab:*' fzf-pad 4
+      zstyle ':fzf-tab:*' fzf-flags '--preview-window=hidden'
+      # zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
+      zstyle ':fzf-tab:*' print-query esc
+      zstyle ':fzf-tab:*' accept-line ""
+      zstyle ':fzf-tab:*' continuous-trigger '/'
+      " \
+      Aloxaf/fzf-tab
+
+  zinit wait'0b' lucid light-mode depth'1' for \
+    has'lua' pick'/dev/null' \
+    atinit'
+      _ZL_ROOT_MARKERS=".git,flake.nix"
+      _ZL_CMD="c"
+    ' \
+    eval'lua ./z.lua --init zsh once enhanced' \
+    atload'
+      alias cb="$_ZL_CMD -b"
+      alias ci="$_ZL_CMD -I"
+      alias cc="$_ZL_CMD -c"
+      alias ch="$_ZL_CMD -I -t ."
+    ' \
+      skywind3000/z.lua \
+    has'atuin' id-as'atuinsh/atuin' pick'/dev/null' \
+    atinit'export ATUIN_NOBIND=1' \
+    eval'atuin init zsh' \
+    atload'
+      # redefine atuin
+      _zsh_autosuggest_strategy_atuin() {
+        suggestion=$(
+          ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix --exit 0 --after  "1min ago" ||
+          ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix --exit 0 --before "1min ago" --cwd . ||
+          ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix --exit 0 --before "1min ago" --exclude-cwd .
+        )
+      }
+
+      bindkey -M main "^R" atuin-up-search
+      bindkey -M main "^S" atuin-search
+    ' \
+      zdharma-continuum/null \
+    atinit'
+      HISTORY_SUBSTRING_SEARCH_PREFIXED=1
+      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+    ' \
+    atload'
+      bindkey -M main "^P" history-substring-search-up 
+      bindkey -M main "^N" history-substring-search-down
+    ' \
+      zsh-users/zsh-history-substring-search
+
+}

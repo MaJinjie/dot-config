@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+###############################################################
+# @author majinjie
+# @created 2025-6-9
+# @description 解决tmux错误地将终端响应解释为按键事件
+# @see https://github.com/sxyazi/yazi/issues/2848
+###############################################################
+
+
+# 定义需要保护的按键绑定
+KEYS=("M-[")
+
+# 用于存储每个键的原绑定命令
+declare -A ORIGINAL_BINDS
+
+# --- 保存原绑定并解绑 ---
+for key in "${KEYS[@]}"; do
+    # 查找 root 表中对应键的绑定
+    bind_line=$(tmux list-keys -T root | grep -F "$key")
+    if [[ -n "$bind_line" ]]; then
+        ORIGINAL_BINDS["$key"]="$bind_line"
+        tmux unbind -T root "$key"
+    fi
+done
+
+# --- 启动 yazi ---
+yazi "$@"
+
+# --- 恢复绑定 ---
+for key in "${!ORIGINAL_BINDS[@]}"; do
+    bind_cmd=${ORIGINAL_BINDS[$key]}
+    if [[ -n "$bind_cmd" ]]; then
+        # 使用 eval 恢复绑定
+        eval "tmux $bind_cmd"
+    fi
+done

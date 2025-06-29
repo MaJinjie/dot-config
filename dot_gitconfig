@@ -1,0 +1,26 @@
+[user]
+	  email = 2734883936@qq.com
+	  name = majinjie
+[alias]
+    su = status
+    sh = stash
+    ci = commit
+    co = checkout
+    ch = branch
+
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+[safe]
+	  directory = /etc/nixos
+[core]
+    editor = nvim
+    paper = delta
+[diff]
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+    cmd = nvim -d "$LOCAL" "$REMOTE"
+
+
+# vim: set shiftwidth=4:
