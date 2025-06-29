@@ -1,2 +1,2 @@
 # dot-config
-Regarding dotfile configuration collections.
+Manage dotfiles using chezmoi.
